@@ -5,9 +5,19 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>Sounds</title>
 </head>
-    <h1 class="center">Main Page</h1>
-    {% for i in sound %}
-        <a><img onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()" src="{{ i.image.url }}"></a>
-    {% endfor %}
-</body>
+<h1 class="center">Main Page</h1>
+<div class="card-group">
+{% for i in sound %}
+    <div class="card" style="width: 18rem;">
+        <img onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()" src="{{ i.image.url }}">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+    </body>
 </html>

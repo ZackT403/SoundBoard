@@ -1,3 +1,7 @@
 .center{
     text-align: center;
 }
+
+.card-background{
+    background-color: rgba(0, 191, 255, 0.08);
+}
