@@ -5,17 +5,9 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>Sounds</title>
 </head>
-<body>
     <h1 class="center">Main Page</h1>
     {% for i in sound %}
-        <div class="card" style="width: 600px;">
-            <div class="card-img-top">
-                <img src="{{ i.image.url }}">
-            </div>
-            <audio controls>
-                <source src="{{ i.sound.url }}" type="audio/ogg">
-            </audio>
-        </div>
+        <a><img onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()" src="{{ i.image.url }}"></a>
     {% endfor %}
 </body>
 </html>
