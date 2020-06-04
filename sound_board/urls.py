@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from sound.views import Main,CreatePost
+from sound import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',Main.as_view()),
-    path('new',CreatePost.as_view())
+    path('', views.MainView.as_view()),
+    path('new', views.CreatePost.as_view())
 ]
 
 if settings.DEBUG:
