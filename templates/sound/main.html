@@ -8,10 +8,14 @@
 <body>
     <h1 class="center">Main Page</h1>
     {% for i in sound %}
-        <img src="{{ i.image.url }}">
-        <audio controls>
-            <source src="{{ i.sound.url }}" type="audio/ogg">
-        </audio>
+        <div class="card" style="width: 600px;">
+            <div class="card-img-top">
+                <img src="{{ i.image.url }}">
+            </div>
+            <audio controls>
+                <source src="{{ i.sound.url }}" type="audio/ogg">
+            </audio>
+        </div>
     {% endfor %}
 </body>
 </html>
