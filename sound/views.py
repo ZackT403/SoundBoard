@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views import View
+from .models import SoundPost
 
 # Create your views here.
 class Main(View):
     @staticmethod
     def get(request):
-        return render(request,'sound/main.html')
-
-    @staticmethod
-    def post(request):
-        pass
+        context = {
+            'sound':SoundPost.objects.all(),
+        }
+        return render(request,'sound/main.html',context)
