@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from sound.views import Main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',Main.as_view())
 ]
 
 if settings.DEBUG:
