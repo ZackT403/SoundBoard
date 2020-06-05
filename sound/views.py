@@ -38,3 +38,7 @@ class SoundBoard(LoginRequiredMixin,View):
             'user_sound': user_sounds,
         }
         return render(request, 'sound/sound_board.html',context)
+
+    @staticmethod
+    def post(request):
+        pass
