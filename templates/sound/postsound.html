@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'sound/base.html' %}
+{% block content %}
+
     <form method="post">
         {% csrf_token %}
         <tr><th><label for="id_title">Title:</label></th><td><input type="text" name="title" maxlength="20" required id="id_title"></td></tr>
         <tr><th><label for="id_sound">Audio:</label></th><td><input type="file" name="sound"  required id="id_sound"></td></tr>
         <tr><th><label for="id_image">Thumb Nail:</label></th><td><input type="file" name="image" accept="image/*" required id="id_image"></td></tr>
     </form>
-</body>
-</html>
+
+{% endblock content %}

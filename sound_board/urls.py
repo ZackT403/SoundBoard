@@ -18,11 +18,18 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from sound import views
+from users import views as user_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.MainView.as_view()),
-    path('new', views.CreatePost.as_view())
+    path('', views.MainView.as_view(), name='main'),
+    path('new/', views.CreatePost.as_view(), name='new'),
+    path('signup/', user_views.signup, name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('profile/', user_views.ProfileView.as_view(), name='profile'),
+
 ]
 
 if settings.DEBUG:
