@@ -1,9 +1,13 @@
 {% extends 'sound/base.html' %}
 {% block content %}
 
-<form enctype="multipart/form-data" action="" method="post" id="soundpost_form" novalidate>        {% csrf_token %}
-        {{ form }}
-        <button type="submit">cliock  this</button>
-    </form>
+
+<form enctype="multipart/form-data" action="" method="post" id="soundpost_form" novalidate>
+    {% csrf_token  %}
+    <input type="text" name="title" maxlength="100" required id="id_title" placeholder="Title">
+    <input type="file" name="sound" required id="id_sound" accept="audio/*">
+    <input type="file" name="image" accept="image/*" id="id_image">
+    <button type="submit">cliock  this</button>
+</form>
 
 {% endblock content %}
