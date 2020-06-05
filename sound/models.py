@@ -1,8 +1,9 @@
 from django.db import models
 from PIL import Image
 from django.contrib.auth.models import User
+from mutagen.mp3 import MP3
 
-# Create your models here.
+
 class SoundPost(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE,default='')
     sound = models.FileField(upload_to='sounds')
@@ -10,6 +11,7 @@ class SoundPost(models.Model):
     title = models.CharField(max_length=100)
 
     def save(self, **kwargs):
+
         super().save()
         img = Image.open(self.image.path)
 
