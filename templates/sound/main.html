@@ -1,21 +1,22 @@
-{% load static %}
-<html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <title>Sounds</title>
-</head>
-<h1 class="center">Main Page</h1>
-<div class="card-group">
-{% for i in sound %}
-    <div class="card" style="width: 18rem;" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
-        <img src="{{ i.image.url }}">
-        <div class="card-body">
-            <h5 class="card-title center">{{ i.title }}</h5>
+{% extends 'sound/base.html' %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-4 article">
+            {% if error_message %}
+                <div class="alert alert-warning" role="alert">
+                    {{ error_message }}
+                </div>
+            {% endif %}
+            {% for i in sound %}
+                <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
+                    <img src="{{ i.image.url }}" alt="sound-image">
+                    <div class="card-body">
+                        <h5 class="card-title center">{{ i.title }}</h5>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
-{% endfor %}
-</div>
 
-    </body>
-</html>
+{% endblock content %}
