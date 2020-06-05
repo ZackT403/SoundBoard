@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in user_sound %}
+    <div class="card" onclick="var audio = new Audio('{{ i.sounds.sound.url }}'); audio.play()">
+        <img src="{{ i.sounds.image.url }}" alt="sound-image">
+        <div class="card-body">
+            <h5 class="card-title center">{{ i.sounds.title }}</h5>
+        </div>
+    </div>
+{% endfor %}
+</body>
+</html>

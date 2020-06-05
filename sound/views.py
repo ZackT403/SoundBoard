@@ -1,6 +1,8 @@
 from django.views.generic import ListView, CreateView
-from .models import SoundPost
+from django.views import View
+from .models import SoundPost, UserSoundBoard
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 
 
 class MainView(ListView):
@@ -24,3 +26,15 @@ class CreatePost(LoginRequiredMixin, CreateView):
             print('not mp3')
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class SoundBoard(View):
+    @staticmethod
+    def get(request):
+        user_sounds = UserSoundBoard.objects.filter(user=request.user)
+        print(user_sounds)
+
+        context = {
+            'user_sound': user_sounds,
+        }
+        return render(request, 'sound/sound_board.html',context)
