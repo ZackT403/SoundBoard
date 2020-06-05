@@ -5,7 +5,7 @@ from django.db import models
 class SoundPost(models.Model):
     sound = models.FileField(upload_to='sounds')
     image = models.ImageField(upload_to='images', default='images/default.png')
-    title = models.CharField(max_length=100, default='sound file')
+    title = models.CharField(max_length=100)
 
     def __str__(self):
         return self.title
