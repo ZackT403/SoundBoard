@@ -3,7 +3,7 @@ from django.views import View
 from .models import SoundPost, UserSoundBoard
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import ButtonForm
+from .forms import ButtonForm, DeleteButton
 
 
 class MainView(ListView):
@@ -44,13 +44,23 @@ class SoundBoard(LoginRequiredMixin, View):
     @staticmethod
     def get(request):
         user_sounds = UserSoundBoard.objects.filter(user=request.user)
-        print(user_sounds)
+        if not user_sounds.first():
+            context = {
+                'add_sounds': 'True',
+            }
+        else:
+            context = {
+                'user_sound': user_sounds,
+            }
 
-        context = {
-            'user_sound': user_sounds,
-        }
         return render(request, 'sound/sound_board.html', context)
 
     @staticmethod
     def post(request):
-        pass
+        form = DeleteButton(request.POST)
+        if form.is_valid():
+            prim_key = form.cleaned_data['prim_key']
+            abso = UserSoundBoard.objects.filter(pk = prim_key).first()
+            if request.user == abso.user:
+                UserSoundBoard.objects.filter(pk=prim_key).first().delete()
+        return HttpResponseRedirect('/soundboard/')
