@@ -10,3 +10,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'full_name', 'email', 'password1', 'password2',)
+
+
+class DeletePost(forms.Form):
+    prim_key = forms.CharField()

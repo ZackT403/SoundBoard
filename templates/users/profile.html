@@ -13,6 +13,31 @@
                         <strong>Date Joined - </strong>{{ user.date_joined|date:'d M Y' }}<br>
                     </div>
                 </div>
+                <div class="row align-items-start">
+                    {% for i in post %}
+                         <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
+                            <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
+                                <img src="{{ i.image.url }}" alt="sound-image">
+                                <div class="card-body">
+                                    <h5 class="card-title center">{{ i.title }}</h5>
+                                    {% if user.is_authenticated %}
+                                        <form method="post">
+                                            {% csrf_token %}
+                                             <button class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Delete</button>
+                                        </form>
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:4 %}
+                            <div class="w-100"></div>
+                        {% endif %}
+                        {% if forloop.last %}
+                            <div class="col-sm"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% endif %}
         </div>
     </div>

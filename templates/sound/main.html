@@ -19,7 +19,8 @@
                                 {% if user.is_authenticated %}
                                     <form method="post">
                                         {% csrf_token %}
-                                         <button class="btn btn-dark" id="val" name="val" value="{{ i.pk }}">Add</button>                                    </form>
+                                         <button class="btn btn-dark" id="val" name="val" value="{{ i.pk }}">Add</button>
+                                    </form>
                                 {% endif %}
                             </div>
                         </div>
