@@ -3,8 +3,9 @@ from django.views import View
 from .models import SoundPost, UserSoundBoard
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
 from .forms import ButtonForm
-
+from mutagen.mp3 import MP3
 
 class MainView(ListView):
     template_name = 'sound/main.html'
@@ -34,8 +35,10 @@ class CreatePost(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         audio = str(form.cleaned_data['sound'])
         audio_type = audio.split('.')[-1:][0]
+
         if 'mp3' not in audio_type:
-            print('not mp3')
+            return HttpResponseRedirect('/')
+
         form.instance.author = self.request.user
         return super().form_valid(form)
 

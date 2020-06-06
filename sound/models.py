@@ -18,6 +18,8 @@ class SoundPost(models.Model):
             img.thumbnail((100, 100))
             img.save(self.image.path)
 
+
+
     def __str__(self):
         return self.title
 
