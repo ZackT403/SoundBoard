@@ -8,19 +8,18 @@
                     {{ error_message }}
                 </div>
             {% endif %}
+            <h1 class="center">All Sounds</h1>
             <div class="row align-items-start">
                 {% for i in sound %}
-                    <div class="col-sm" style="padding-top: 10px;">
+                     <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
                         <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
                             <img src="{{ i.image.url }}" alt="sound-image">
                             <div class="card-body">
                                 <h5 class="card-title center">{{ i.title }}</h5>
-                                <h5 class="card-title center">{{ i.pk }}</h5>
                                 {% if user.is_authenticated %}
                                     <form method="post">
                                         {% csrf_token %}
-                                        <button id = "val" name = "val" value="{{ i.pk }}">Add</button>
-                                    </form>
+                                         <button class="btn btn-dark" id="val" name="val" value="{{ i.pk }}">Add</button>                                    </form>
                                 {% endif %}
                             </div>
                         </div>
@@ -39,10 +38,3 @@
 {% endblock content %}
 
 
-                <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
-                    <img src="{{ i.image.url }}" alt="sound-image">
-                    <div class="card-body">
-                        <h5 class="card-title center">{{ i.title }}</h5>
-                        <h5 class="card-title center">{{ i.pk }}</h5>
-                    </div>
-                </div>

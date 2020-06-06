@@ -22,7 +22,7 @@ class MainView(ListView):
             post = SoundPost.objects.filter(pk=pk_key).first()
             model = UserSoundBoard(user=request.user, sounds=post)
             model.save()
-            return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/')
 
 
 class CreatePost(LoginRequiredMixin, CreateView):
