@@ -1,13 +1,18 @@
 {% extends 'sound/base.html' %}
 {% block content %}
-
-
-<form enctype="multipart/form-data" action="" method="post" id="soundpost_form" novalidate>
-    {% csrf_token  %}
-    <input type="text" name="title" maxlength="100" required id="id_title" placeholder="Title">
-    <input type="file" name="sound" required id="id_sound" accept="audio/*">
-    <input type="file" name="image" accept="image/*" id="id_image">
-    <button type="submit">cliock  this</button>
-</form>
-
+    {% load crispy_forms_tags %}
+    {% load crispy_forms_filters %}
+    <div class="row justify-content-center">
+        <div class="col-10 article">
+            <div class="card">
+                <div class="card-body">
+                    <form enctype="multipart/form-data" action="" method="post" id="soundpost_form" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
