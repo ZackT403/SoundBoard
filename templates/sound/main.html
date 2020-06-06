@@ -16,10 +16,12 @@
                             <div class="card-body">
                                 <h5 class="card-title center">{{ i.title }}</h5>
                                 <h5 class="card-title center">{{ i.pk }}</h5>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <button id = "val" name = "val" value="{{ i.pk }}">Add</button>
-                                </form>
+                                {% if user.is_authenticated %}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <button id = "val" name = "val" value="{{ i.pk }}">Add</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
