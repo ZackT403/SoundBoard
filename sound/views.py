@@ -28,7 +28,7 @@ class CreatePost(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class SoundBoard(LoginRequiredMixin,View):
+class SoundBoard(LoginRequiredMixin, View):
     @staticmethod
     def get(request):
         user_sounds = UserSoundBoard.objects.filter(user=request.user)
@@ -37,7 +37,7 @@ class SoundBoard(LoginRequiredMixin,View):
         context = {
             'user_sound': user_sounds,
         }
-        return render(request, 'sound/sound_board.html',context)
+        return render(request, 'sound/sound_board.html', context)
 
     @staticmethod
     def post(request):
