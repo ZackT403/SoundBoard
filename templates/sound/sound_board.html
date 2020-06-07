@@ -16,7 +16,7 @@
                                 <h5 class="card-title center">{{ i.sounds.title }}</h5>
                                 <form method="post">
                                     {% csrf_token %}
-                                    <button id = "prim_key" name = "prim_key" value="{{ i.pk }}">Delete</button>
+                                    <button class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Delete</button>
                                 </form>
                             </div>
                         </div>
