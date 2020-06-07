@@ -7,24 +7,6 @@
 }
 
 
-body {
-  background: #a8a8a8;
-  color: #333333;
-  margin-top: 5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
-}
-
-ul {
-  margin: 0;
-}
-
-.bg-steel {
-  background-color: #5f788a;
-}
-
 .site-header .navbar-nav .nav-link {
   color: #cbd5db;
 }
@@ -36,6 +18,7 @@ ul {
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
 }
+
 
 .content-section {
   background: #ffffff;
@@ -79,4 +62,8 @@ a.article-title:hover {
   width: 25px;
   height: 25px;
   vertical-align: middle;
+}
+
+.title {
+  margin-top: 5px;
 }
