@@ -1,4 +1,4 @@
-#!/home/zackturner/PycharmProjects/sound_board/venv/bin/python
+#!/home/mainuser/SoundBoard/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

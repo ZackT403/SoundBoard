@@ -35,10 +35,10 @@ class CreatePost(LoginRequiredMixin, CreateView):
         audio = str(form.cleaned_data['sound'])
         audio_type = audio.split('.')[-1:][0]
         if 'mp3' not in audio_type:
-            print('not mp3')
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
+            return HttpResponseRedirect('/new/')
+        else:
+            form.instance.author = self.request.user
+            return super().form_valid(form)
 
 class SoundBoard(LoginRequiredMixin, View):
     @staticmethod

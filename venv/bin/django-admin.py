@@ -1,4 +1,4 @@
-#!/home/zackturner/PycharmProjects/sound_board/venv/bin/python
+#!/home/mainuser/SoundBoard/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
