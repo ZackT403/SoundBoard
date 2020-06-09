@@ -6,7 +6,7 @@
             <h1 class="center">{{ user.username }} - Personal soundboard</h1>
             <div class="row align-items-start">
             {% if add_sounds %}
-                <h1>You Have No Sounds Click <a href="/">Here</a> To Add Some</h1>
+                <h1 style="padding-top: 10px">You Have No Sounds Click <a href="/">Here</a> To Add Some</h1>
             {% endif %}
             {% for i in user_sound %}
                     <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
