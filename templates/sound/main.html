@@ -8,12 +8,12 @@
                     {{ error_message }}
                 </div>
             {% endif %}
-            <h1 class="center">All Sounds</h1>
+            <h1 >All Sounds</h1>
             <div class="row align-items-start">
                 {% for i in sound %}
                      <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
                         <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
-                            <img src="{{ i.image.url }}" alt="sound-image">
+                            <img src="{{ i.image.url }}" alt="sound-image" height="200" width="168">
                             <div class="card-body">
                                 <h5 class="card-title center">{{ i.title }}</h5>
                                 {% if user.is_authenticated %}

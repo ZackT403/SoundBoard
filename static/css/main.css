@@ -1,3 +1,10 @@
+body{
+  background-color: whitesmoke;
+  margin-bottom: 5%;
+}
+
+
+
 .center{
     text-align: center;
 }
@@ -5,7 +12,6 @@
 .card-background{
     background-color: rgba(0, 191, 255, 0.08);
 }
-
 
 .site-header .navbar-nav .nav-link {
   color: #cbd5db;
