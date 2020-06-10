@@ -8,6 +8,10 @@ body{
 .center{
     text-align: center;
 }
+a.article-title:hover {
+}
+
+
 
 .card-background{
     background-color: rgba(0, 191, 255, 0.08);
@@ -72,4 +76,27 @@ a.article-title:hover {
 
 .title {
   margin-top: 5px;
+  padding-top: 10px;
+}
+
+.container {
+  display: table;
+}
+
+
+.container>.row>* {
+  display: table-cell;
+  padding:5px;
+  white-space:nowrap;
+}
+.col {
+ width:100%;
+}
+
+.audio-card {
+  transition: transform .2s;
+}
+
+.audio-card:hover {
+  transform: scale(1.05);
 }

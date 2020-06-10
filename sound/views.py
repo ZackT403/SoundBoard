@@ -64,3 +64,7 @@ class SoundBoard(LoginRequiredMixin, View):
             if request.user == abso.user:
                 UserSoundBoard.objects.filter(pk=prim_key).first().delete()
         return HttpResponseRedirect('/soundboard/')
+
+
+def handler404(request,*args,**kwargs):
+    return render(request,'error_pages/404.html', status=404)

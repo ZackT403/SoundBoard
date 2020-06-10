@@ -31,6 +31,6 @@ urlpatterns = [
     path('profile/', user_views.ProfileView.as_view(), name='profile'),
     path('soundboard/', views.SoundBoard.as_view(), name='userboard'),
 ]
-
+#handler404 = views.handler404
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

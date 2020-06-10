@@ -24,7 +24,7 @@ SECRET_KEY = 'ucrmkofz2h2g^tm)l@0+n%==fxn9)da^!j*m!!)3ixa7cnnp$$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['212.71.244.218','soundboard.wtf','www.soundboard.wtf','192.168.1.36']
+ALLOWED_HOSTS = ['212.71.244.218', 'soundboard.wtf', 'www.soundboard.wtf', '192.168.1.36']
 
 # Application definition
 
@@ -118,11 +118,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'static'),
-)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = (os.path.join(BASE_DIR, 'static'))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (os.path.join(BASE_DIR, 'media'))
