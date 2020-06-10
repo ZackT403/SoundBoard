@@ -7,5 +7,8 @@ class ButtonForm(forms.Form):
 
 
 class DeleteButton(forms.Form):
-
     prim_key = forms.CharField()
+
+
+class SearchBar(forms.Form):
+    search = forms.CharField(max_length=20)

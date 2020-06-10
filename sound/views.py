@@ -3,10 +3,9 @@ from django.views import View
 from .models import SoundPost, UserSoundBoard
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import ButtonForm, DeleteButton
-
-
-class MainView(ListView):
+from .forms import ButtonForm, DeleteButton, SearchBar
+from django.contrib.postgres.search import TrigramSimilarity
+'''class MainView(ListView):
     template_name = 'sound/main.html'
     context_object_name = 'sound'
     model = UserSoundBoard
@@ -23,6 +22,45 @@ class MainView(ListView):
             model = UserSoundBoard(user=request.user, sounds=post)
             model.save()
         return HttpResponseRedirect('/')
+'''
+
+
+class MainView(View):
+
+    @staticmethod
+    def get(request):
+        context = {
+            'sound': SoundPost.objects.all().order_by('?'),
+            'search': SearchBar(),
+        }
+
+        return render(request, 'sound/main.html',context)
+
+    @staticmethod
+    def post(request):
+        form = ButtonForm(request.POST)
+        search_qr = SearchBar(request.POST)
+
+        if search_qr.is_valid():
+            user_qr = search_qr.cleaned_data['search']
+            results = SoundPost.objects.filter(title__contains = user_qr)
+            context = {
+                'sound': results,
+                'search': search_qr,
+            }
+        else:
+            context = {
+                'sound': SoundPost.objects.all().order_by('?'),
+                'search': search_qr,
+            }
+
+        if form.is_valid():
+            pk_key = form.cleaned_data['val']
+            post = SoundPost.objects.filter(pk=pk_key).first()
+            model = UserSoundBoard(user=request.user, sounds=post)
+            model.save()
+
+        return render(request, 'sound/main.html', context)
 
 
 class CreatePost(LoginRequiredMixin, CreateView):
@@ -39,6 +77,7 @@ class CreatePost(LoginRequiredMixin, CreateView):
         else:
             form.instance.author = self.request.user
             return super().form_valid(form)
+
 
 class SoundBoard(LoginRequiredMixin, View):
     @staticmethod
@@ -60,11 +99,11 @@ class SoundBoard(LoginRequiredMixin, View):
         form = DeleteButton(request.POST)
         if form.is_valid():
             prim_key = form.cleaned_data['prim_key']
-            abso = UserSoundBoard.objects.filter(pk = prim_key).first()
+            abso = UserSoundBoard.objects.filter(pk=prim_key).first()
             if request.user == abso.user:
                 UserSoundBoard.objects.filter(pk=prim_key).first().delete()
         return HttpResponseRedirect('/soundboard/')
 
 
-def handler404(request,*args,**kwargs):
-    return render(request,'error_pages/404.html', status=404)
+def handler404(request, *args, **kwargs):
+    return render(request, 'error_pages/404.html', status=404)

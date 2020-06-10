@@ -9,36 +9,42 @@
                     {{ error_message }}
                 </div>
             {% endif %}
-    </div>
-            <h1 style="font-size: 50px;">All Sounds</h1>
-            <div class="container">
-                <div class="row align-items-start">
-                    {% for i in sound %}
-                         <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
-                            <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
-                                <img src="{{ i.image.url }}" alt="sound-image" height="200" width="188">
-                                <div class="card-body">
-                                    <h5 class="card-title center">{{ i.title }}</h5>
-                                    {% if user.is_authenticated %}
-                                        <form method="post">
-                                            {% csrf_token %}
-                                             <button class="btn btn-dark" id="val" name="val" value="{{ i.pk }}">Add</button>
-                                        </form>
-                                    {% endif %}
-                                </div>
+        </div>
+        <h1 style="font-size: 50px;">All Sounds</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Enter Sound" maxlength="20" required="" id="id_search">            </form>
+        <div class="container">
+            <div class="row align-items-start">
+                {% if not sound %}
+                    <h1 align="center" class="center">UH OH Nothing Found!</h1>
+                {% endif %}
+                {% for i in sound %}
+                    <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
+                        <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
+                            <img src="{{ i.image.url }}" alt="sound-image" height="200" width="188">
+                            <div class="card-body">
+                                <h5 class="card-title center">{{ i.title }}</h5>
+                                {% if user.is_authenticated %}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <button class="btn btn-dark" id="val" name="val" value="{{ i.pk }}">Add</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
-                        {% if forloop.counter|divisibleby:4 %}
-                            <div class="w-100"></div>
-                        {% endif %}
-                        {% if forloop.last %}
-                            <div class="col-sm"></div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 %}
+                        <div class="w-100"></div>
+                    {% endif %}
+                    {% if forloop.last %}
+                        <div class="col-sm"></div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
+</div>
 
 {% endblock content %}
 
