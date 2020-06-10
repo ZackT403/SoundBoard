@@ -16,7 +16,7 @@
                     {% for i in sound %}
                          <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
                             <div class="card" onclick="var audio = new Audio('{{ i.sound.url }}'); audio.play()">
-                                <img src="{{ i.image.url }}" alt="sound-image" height="200" width="168">
+                                <img src="{{ i.image.url }}" alt="sound-image" height="200" width="188">
                                 <div class="card-body">
                                     <h5 class="card-title center">{{ i.title }}</h5>
                                     {% if user.is_authenticated %}
