@@ -5,30 +5,33 @@
         <div class="col-10 article">
             <h1 class="center">{{ user.username }} - Personal soundboard</h1>
             <div class="row align-items-start">
-            {% if add_sounds %}
-                 <h1 style="padding-top: 10px">You Have No Sounds Click <a href="/">Here</a> To Add Some</h1>            {% endif %}
-            {% for i in user_sound %}
-                    <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
-                        <div class="card" onclick="var audio = new Audio('{{ i.sounds.sound.url }}'); audio.play()">
-                            <img src="{{ i.sounds.image.url }}" alt="sound-image">
-                            <div class="card-body">
-                                <h5 class="card-title center">{{ i.sounds.title }}</h5>
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <button class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Delete</button>
-                                </form>
+                {% if add_sounds %}
+                    <h1 style="padding-top: 10px">You Have No Sounds Click <a href="/">Here</a> To Add Some</h1>            {% endif %}
+                <div class="container">
+                    <div class="row align-items-start">
+                        {% for i in user_sound %}
+                            <div class="col-sm audio-card" style="padding-top: 10px; width: 200px; max-width: 200px;">
+                                <div class="card" onclick="var audio = new Audio('{{ i.sounds.sound.url }}'); audio.play()">
+                                    <img src="{{ i.sounds.image.url }}" alt="sound-image">
+                                    <div class="card-body">
+                                        <h5 class="card-title center">{{ i.sounds.title }}</h5>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <button class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            {% if forloop.counter|divisibleby:4 %}
+                                <div class="w-100"></div>
+                            {% endif %}
+                            {% if forloop.last %}
+                                <div class="col-sm"></div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                {% if forloop.counter|divisibleby:4 %}
-                        <div class="w-100"></div>
-                    {% endif %}
-                    {% if forloop.last %}
-                        <div class="col-sm"></div>
-                    {% endif %}
-                {% endfor %}
+                </div>
             </div>
         </div>
-    </div>
 
- {% endblock content %}
+{% endblock content %}
