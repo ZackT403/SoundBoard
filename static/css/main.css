@@ -86,7 +86,7 @@ a.article-title:hover {
 
 .container>.row>* {
   display: table-cell;
-  padding:5px;
+  padding:2px;
   white-space:nowrap;
 }
 .col {
