@@ -9,6 +9,7 @@ class SoundPost(models.Model):
     sound = models.FileField(upload_to='sounds')
     image = models.ImageField(upload_to='images', default='images/default.png')
     title = models.CharField(max_length=20)
+    adds = models.IntegerField(default=0)
 
     def save(self, **kwargs):
         super().save()

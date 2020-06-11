@@ -57,8 +57,13 @@ class MainView(View):
         if form.is_valid():
             pk_key = form.cleaned_data['val']
             post = SoundPost.objects.filter(pk=pk_key).first()
-            model = UserSoundBoard(user=request.user, sounds=post)
-            model.save()
+            if len(str(UserSoundBoard.objects.filter(user=request.user)).split(',')) == 16:
+                HttpResponseRedirect('/')
+            else:
+                post.adds += 1
+                post.save()
+                model = UserSoundBoard(user=request.user, sounds=post)
+                model.save()
 
         return render(request, 'sound/main.html', context)
 
@@ -99,8 +104,7 @@ class SoundBoard(LoginRequiredMixin, View):
         form = DeleteButton(request.POST)
         if form.is_valid():
             prim_key = form.cleaned_data['prim_key']
-            abso = UserSoundBoard.objects.filter(pk=prim_key).first()
-            if request.user == abso.user:
+            if UserSoundBoard.objects.filter(pk=prim_key).first():
                 UserSoundBoard.objects.filter(pk=prim_key).first().delete()
         return HttpResponseRedirect('/soundboard/')
 
