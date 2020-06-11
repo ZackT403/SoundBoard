@@ -11,4 +11,4 @@ class DeleteButton(forms.Form):
 
 
 class SearchBar(forms.Form):
-    search = forms.CharField(max_length=20)
+    search = forms.CharField(max_length=23)
