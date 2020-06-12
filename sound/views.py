@@ -43,7 +43,7 @@ class MainView(View):
 
         if search_qr.is_valid():
             user_qr = search_qr.cleaned_data['search']
-            results = SoundPost.objects.filter(title__contains = user_qr)
+            results = SoundPost.objects.filter(title__icontains = user_qr)
             context = {
                 'sound': results,
                 'search': search_qr,
