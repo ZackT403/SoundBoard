@@ -4,7 +4,8 @@ from .models import SoundPost, UserSoundBoard
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import ButtonForm, DeleteButton, SearchBar
-from django.contrib.postgres.search import TrigramSimilarity
+from django.core.paginator import Paginator
+
 '''class MainView(ListView):
     template_name = 'sound/main.html'
     context_object_name = 'sound'
@@ -25,17 +26,11 @@ from django.contrib.postgres.search import TrigramSimilarity
 '''
 
 
-class MainView(View):
-
-    @staticmethod
-    def get(request):
-        context = {
-            'sound': SoundPost.objects.all().order_by('?'),
-            'search': SearchBar(),
-        }
-
-        return render(request, 'sound/main.html',context)
-
+class MainView(ListView):
+    paginate_by = 16
+    model = SoundPost
+    context_object_name = 'sound'
+    template_name = 'sound/main.html'
     @staticmethod
     def post(request):
         form = ButtonForm(request.POST)
@@ -43,7 +38,7 @@ class MainView(View):
 
         if search_qr.is_valid():
             user_qr = search_qr.cleaned_data['search']
-            results = SoundPost.objects.filter(title__icontains = user_qr)
+            results = SoundPost.objects.filter(title__icontains=user_qr)
             context = {
                 'sound': results,
                 'search': search_qr,
