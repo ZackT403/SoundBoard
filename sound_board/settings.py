@@ -24,7 +24,7 @@ SECRET_KEY = 'ucrmkofz2h2g^tm)l@0+n%==fxn9)da^!j*m!!)3ixa7cnnp$$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['212.71.244.218', 'soundboard.wtf', 'www.soundboard.wtf', '192.168.1.36']
+ALLOWED_HOSTS = ['212.71.244.218', 'soundboard.wtf', 'www.soundboard.wtf', '192.168.1.36','439548f33768.ngrok.io']
 
 # Application definition
 
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

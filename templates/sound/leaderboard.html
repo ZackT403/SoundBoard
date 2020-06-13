@@ -1,0 +1,30 @@
+{% extends 'sound/base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Adds</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in profile %}
+            <tr>
+                <th scope="row"><strong>{{ forloop.counter }}</strong></th>
+                <th scope="row"><a class="text-muted">{{ i }}</a></th>
+                <th><a class="text-muted">{{ i.adds }}</a></th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </body>
+    </html>
+{% endblock %}

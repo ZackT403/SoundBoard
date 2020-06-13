@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import ButtonForm, DeleteButton, SearchBar
 from django.core.paginator import Paginator
+from users.models import Profile
 
 '''class MainView(ListView):
     template_name = 'sound/main.html'
@@ -31,6 +32,7 @@ class MainView(ListView):
     model = SoundPost
     context_object_name = 'sound'
     template_name = 'sound/main.html'
+
     @staticmethod
     def post(request):
         form = ButtonForm(request.POST)
@@ -55,6 +57,9 @@ class MainView(ListView):
             if len(str(UserSoundBoard.objects.filter(user=request.user)).split(',')) == 16:
                 HttpResponseRedirect('/')
             else:
+                a = Profile.objects.filter(user=post.author).first()
+                a.adds += 1
+                a.save()
                 post.adds += 1
                 post.save()
                 model = UserSoundBoard(user=request.user, sounds=post)
@@ -102,6 +107,28 @@ class SoundBoard(LoginRequiredMixin, View):
             if UserSoundBoard.objects.filter(pk=prim_key).first():
                 UserSoundBoard.objects.filter(pk=prim_key).first().delete()
         return HttpResponseRedirect('/soundboard/')
+
+
+'''class LeaderBoard(View):
+
+    @staticmethod
+    def get(request):
+
+        context = {
+            'profile' :Profile.objects.order_by('-adds')
+        }
+
+        return render(request, 'sound/leaderboard.html', context)'''
+
+
+class LeaderBoard(ListView):
+    model = Profile
+    context_object_name = 'profile'
+    template_name = 'sound/leaderboard.html'
+    paginate_by = 100
+
+    def get_queryset(self):
+        return Profile.objects.order_by('-adds')
 
 
 def handler404(request, *args, **kwargs):

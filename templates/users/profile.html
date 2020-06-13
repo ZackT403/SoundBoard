@@ -10,6 +10,7 @@
                     <strong>Username - </strong>{{ user.username }}<br>
                     <strong>Email - </strong>{{ user.email }}<br>
                     <strong>Date Joined - </strong>{{ user.date_joined|date:'d M Y' }}<br>
+                    <strong>Total Adds - </strong> {{ profile.adds }}<br>
                 </div>
             </div>
             <h1 class="title">My sounds:</h1>
@@ -23,7 +24,7 @@
                                 {% if user.is_authenticated %}
                                     <form method="post">
                                         {% csrf_token %}
-                                        <button class="btn btn-dark" id="val" name="val" value="{{ i.pk }}">Add</button>
+                                        <button style="width: 100%" class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Delete</button>
                                     </form>
                                 {% endif %}
                             </div>

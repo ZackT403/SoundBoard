@@ -18,7 +18,7 @@
                                     {% if user.is_authenticated %}
                                         <form method="post">
                                             {% csrf_token %}
-                                            <button class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Delete</button>
+                                            <button style="width: 100%" class="btn btn-dark" id="prim_key" name="prim_key" value="{{ i.pk }}">Remove</button>
                                         </form>
                                     {% endif %}
                                 </div>

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views import generic
 from .forms import SignUpForm , DeletePost
 from sound.models import SoundPost
-
+from .models import Profile
 
 def signup(request):
     if request.method == 'POST':
@@ -21,6 +21,7 @@ def signup(request):
                 user = authenticate(username=username, password=raw_password)
                 messages.success(request, f'Thanks for making an account {username}!')
                 login(request, user)
+                Profile.objects.create(user=request.user)
                 return redirect('main')
 
     else:
@@ -34,6 +35,7 @@ class ProfileView(generic.View):
     @staticmethod
     def get(request):
         context = {
+            'profile': Profile.objects.filter(user = request.user).first(),
             'post': SoundPost.objects.filter(author=request.user),
         }
         template_name = 'users/profile.html'
